@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CarRepairShop.Application.Identity.Requests
+﻿namespace CarRepairShop.Application.Identity.Requests
 {
     public class LoginRequest
     {

@@ -1,11 +1,6 @@
 ﻿using CarRepairShop.Application.Common;
 using CarRepairShop.Infrastructure.User.Interfaces;
 using CarRepairShop.Infrastructure.User.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarRepairShop.Infrastructure.User.Services
 {
@@ -15,6 +10,7 @@ namespace CarRepairShop.Infrastructure.User.Services
         {
             throw new NotImplementedException();
         }
+
         public Task<Response<UserViewModel>> Get(string id)
         {
             throw new NotImplementedException();
