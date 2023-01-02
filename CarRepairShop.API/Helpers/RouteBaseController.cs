@@ -1,6 +1,11 @@
-﻿namespace CarRepairShop.API.Helpers
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace CarRepairShop.API.Helpers
 {
-    public class RouteBaseController
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+
+    public class RouteBaseController : ControllerBase
     {
     }
 }

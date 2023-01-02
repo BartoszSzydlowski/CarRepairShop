@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CarRepairShop.Application.Common
 {
-    internal class BaseResponse
+    public class BaseResponse
     {
+        public IEnumerable<string> Errors { get; set; }
     }
 }

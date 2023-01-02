@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace CarRepairShop.Application.Identity.ViewModels
 {
-    internal class TokenViewModel
+    public class TokenViewModel
     {
+        public string Token { get; set; }
+
+        public DateTime ExpirationDate { get; set; }
     }
 }

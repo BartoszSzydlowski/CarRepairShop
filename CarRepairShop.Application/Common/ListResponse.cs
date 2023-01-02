@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace CarRepairShop.Application.Common
 {
-    internal class ListResponse
+    public class ListResponse<T> : BaseResponse
     {
+        public IEnumerable<T> Data { get; set; }
+
+        public int Total { get; set; }
     }
 }

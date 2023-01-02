@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarRepairShop.Infrastructure.Extensions
 {
-    internal class ModelBuilderExtension
+    public class ModelBuilderExtension
     {
     }
 }
