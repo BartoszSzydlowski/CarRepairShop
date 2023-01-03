@@ -30,13 +30,13 @@ namespace CarRepairShop.Infrastructure.Identity
             if (user != null && result)
             {
                 var authClaims = new List<Claim>
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.Email, user.Email),
-                //new Claim(ClaimTypes.MobilePhone, user.PhoneNumber ?? ""),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
+                {
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.Email, user.Email),
+                    //new Claim(ClaimTypes.MobilePhone, user.PhoneNumber ?? ""),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                };
 
                 //var userRoles = await _userManager.GetRolesAsync(user);
                 //foreach (var userRole in userRoles)

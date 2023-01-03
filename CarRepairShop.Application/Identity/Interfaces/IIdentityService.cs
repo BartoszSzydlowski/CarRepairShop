@@ -7,5 +7,7 @@ namespace CarRepairShop.Application.Identity.Interfaces
     public interface IIdentityService
     {
         Task<Response<TokenViewModel>> Login(LoginRequest request);
+
+        Task<BaseResponse> Register(RegisterRequest request);
     }
 }

@@ -2,9 +2,9 @@
 {
     public enum ServiceType
     {
-        Repairing,
-        Maintenance,
-        Inspection,
-        OdbRead
+        Repairing = 1,
+        Maintenance = 2,
+        Inspection = 3,
+        OdbRead = 4
     }
 }
