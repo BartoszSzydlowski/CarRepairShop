@@ -21,11 +21,11 @@ namespace CarRepairShop.API.Middleware
             {
                 await _next(context);
             }
-            catch (AuthenticationException ex)
+            catch (UnauthorizedAccessException ex)
             {
                 await WriteErrorResponse(context, new List<string> { ex.Message }, HttpStatusCode.Unauthorized);
             }
-            catch (UnauthorizedAccessException ex)
+            catch (AuthenticationException ex)
             {
                 await WriteErrorResponse(context, new List<string> { ex.Message }, HttpStatusCode.Forbidden);
             }

@@ -1,3 +1,5 @@
+using CarRepairShop.API.Middleware;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,9 +18,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ErrorHandlingMiddleware>();
+
 app.UseHttpsRedirection();
 
+app.UseCors();
+
+app.UseRouting();
+
 app.UseAuthorization();
+
+app.UseAuthentication();
 
 app.MapControllers();
 
