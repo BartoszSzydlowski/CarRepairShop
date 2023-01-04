@@ -36,9 +36,10 @@ namespace CarRepairShop.Infrastructure.Identity
                 var authClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier, user.Id),
-                    new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(ClaimTypes.Email, user.Email),
                     new Claim(ClaimTypes.MobilePhone, user.PhoneNumber ?? ""),
+                    new Claim(ClaimTypes.Name, user.Name),
+                    new Claim(ClaimTypes.Surname, user.Surname),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 };
 
@@ -65,7 +66,7 @@ namespace CarRepairShop.Infrastructure.Identity
                     }
                 };
             }
-            throw new AuthenticationException();
+            throw new AuthenticationException("Wrong username or password");
         }
 
         public async Task<BaseResponse> Register(RegisterRequest request)

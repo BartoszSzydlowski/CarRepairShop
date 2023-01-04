@@ -1,9 +1,11 @@
 ﻿using CarRepairShop.Application.Common;
+using CarRepairShop.Application.User.Interfaces;
 using CarRepairShop.Infrastructure.Identity;
 using CarRepairShop.Infrastructure.User.Interfaces;
 using CarRepairShop.Infrastructure.User.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace CarRepairShop.Infrastructure.User.Services
 {
@@ -11,11 +13,13 @@ namespace CarRepairShop.Infrastructure.User.Services
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUserResolverService _userResolverService;
 
-        public UserService(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public UserService(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IUserResolverService userResolverService)
         {
             _context = context;
             _userManager = userManager;
+            _userResolverService = userResolverService;
         }
 
         public async Task<ListResponse<UserViewModel>> GetAll()
@@ -25,7 +29,14 @@ namespace CarRepairShop.Infrastructure.User.Services
 
             foreach (var user in data)
             {
-                mappedData.Add(new UserViewModel { Id = user.Id, UserName = user.UserName, Email = user.Email });
+                mappedData.Add(new UserViewModel
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    PhoneNumber = user.PhoneNumber,
+                    Name = user.Name,
+                    Surname = user.Surname
+                });
             }
 
             return new ListResponse<UserViewModel>
@@ -41,8 +52,10 @@ namespace CarRepairShop.Infrastructure.User.Services
             var mappedUser = new UserViewModel
             {
                 Id = user.Id,
-                UserName = user.UserName,
-                Email = user.Email
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                Name = user.Name,
+                Surname = user.Surname,
             };
 
             return new Response<UserViewModel>
@@ -51,14 +64,23 @@ namespace CarRepairShop.Infrastructure.User.Services
             };
         }
 
-        public async Task<BaseResponse> Edit(UserViewModel reqeuest)
+        public async Task<Response<UserViewModel>> GetCurrentUser()
         {
-            throw new NotImplementedException();
-        }
+            var user = _userResolverService.User;
 
-        public async Task<BaseResponse> Delete(string id)
-        {
-            throw new NotImplementedException();
+            var mappedUser = new UserViewModel
+            {
+                Id = user.Claims.Where(x => x.Type == ClaimTypes.NameIdentifier).SingleOrDefault().Value,
+                Email = user.Claims.Where(x => x.Type == ClaimTypes.Email).SingleOrDefault().Value,
+                PhoneNumber = user.Claims.Where(x => x.Type == ClaimTypes.MobilePhone).SingleOrDefault().Value,
+                Name = user.Claims.Where(x => x.Type == ClaimTypes.Name).SingleOrDefault().Value,
+                Surname = user.Claims.Where(x => x.Type == ClaimTypes.Surname).SingleOrDefault().Value,
+            };
+
+            return new Response<UserViewModel>
+            {
+                Data = mappedUser
+            };
         }
     }
 }

@@ -21,5 +21,11 @@ namespace CarRepairShop.API.Controllers
         {
             return await _service.Login(request);
         }
+
+        [HttpPost]
+        public async Task<BaseResponse> Register([FromBody] RegisterRequest request)
+        {
+            return await _service.Register(request);
+        }
     }
 }

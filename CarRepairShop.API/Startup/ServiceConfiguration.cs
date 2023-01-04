@@ -17,6 +17,8 @@ namespace CarRepairShop.API.Startup
                 options.JsonSerializerOptions.WriteIndented = true;
             });
 
+            builder.Services.AddEndpointsApiExplorer();
+
             builder.Services.AddInfrastructure(builder.Configuration);
 
             builder.Services.AddApplication();
@@ -38,6 +40,8 @@ namespace CarRepairShop.API.Startup
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
                 };
             });
+
+            builder.Services.AddAuthorization();
 
             builder.Services.AddSwaggerGen(c =>
             {

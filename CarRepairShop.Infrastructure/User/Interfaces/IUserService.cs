@@ -9,8 +9,6 @@ namespace CarRepairShop.Infrastructure.User.Interfaces
 
         Task<Response<UserViewModel>> Get(string id);
 
-        Task<BaseResponse> Edit(UserViewModel reqeuest);
-
-        Task<BaseResponse> Delete(string id);
+        Task<Response<UserViewModel>> GetCurrentUser();
     }
 }
