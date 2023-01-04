@@ -11,6 +11,8 @@ namespace CarRepairShop.Domain.Models
 
         public OrderStatus OrderStatus { get; set; }
 
+        public ServiceType ServiceType { get; set; }
+
         public string Annotations { get; set; }
 
         public string UserId { get; set; }
