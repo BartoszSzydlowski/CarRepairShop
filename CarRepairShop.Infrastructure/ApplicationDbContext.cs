@@ -1,4 +1,5 @@
 ﻿using CarRepairShop.Application.User.Interfaces;
+using CarRepairShop.Domain.Models;
 using CarRepairShop.Domain.Models.Common;
 using CarRepairShop.Infrastructure.Extensions;
 using CarRepairShop.Infrastructure.Identity;
@@ -16,6 +17,10 @@ namespace CarRepairShop.Infrastructure
         {
             _userResolverService = userResolverService;
         }
+
+        public DbSet<Car> Cars { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
 
         public async Task<int> SaveChangesAsync()
         {

@@ -13,4 +13,16 @@
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Order\Interfaces\" />
+	  <Folder Include="Order\Requests\" />
+	  <Folder Include="Order\ViewModels\" />
+	  <Folder Include="Order\Services\" />
+	  <Folder Include="Order\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\CarRepairShop.Domain\CarRepairShop.Domain.csproj" />
+	</ItemGroup>
+
 </Project>

@@ -1,5 +1,7 @@
 ﻿using CarRepairShop.Application.Identity.Interfaces;
+using CarRepairShop.Domain.Interfaces;
 using CarRepairShop.Infrastructure.Identity;
+using CarRepairShop.Infrastructure.Repositories;
 using CarRepairShop.Infrastructure.User.Interfaces;
 using CarRepairShop.Infrastructure.User.Services;
 using Microsoft.AspNetCore.Identity;
@@ -28,8 +30,8 @@ namespace CarRepairShop.Infrastructure
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-            //services.AddScoped<IProductRepository, ProductRepository>();
-            //services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<ICarRepository, CarRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IIdentityService, IdentityService>();
 

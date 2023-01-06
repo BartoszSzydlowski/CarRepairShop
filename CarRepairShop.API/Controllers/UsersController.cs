@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarRepairShop.API.Controllers
 {
-    public class UserController : RouteBaseController
+    public class UsersController : RouteBaseController
     {
         private readonly IUserService _service;
 
-        public UserController(IUserService service)
+        public UsersController(IUserService service)
         {
             _service = service;
         }
