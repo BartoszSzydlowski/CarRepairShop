@@ -5,10 +5,6 @@ namespace CarRepairShop.Domain.Models
 {
     public class Order : AuditableEntity
     {
-        public int CarId { get; set; }
-
-        public Car Car { get; set; }
-
         public decimal Price { get; set; }
 
         public OrderStatus OrderStatus { get; set; }
@@ -17,8 +13,16 @@ namespace CarRepairShop.Domain.Models
 
         public string Annotations { get; set; }
 
-        public string UserId { get; set; }
+        public string Model { get; set; }
 
-        public bool IsAccepted { get; set; }
+        public string Manufacturer { get; set; }
+
+        public string Mileage { get; set; }
+
+        public string VinNumber { get; set; }
+
+        public string LicensePlateNumber { get; set; }
+
+        public bool IsVisible { get; set; }
     }
 }

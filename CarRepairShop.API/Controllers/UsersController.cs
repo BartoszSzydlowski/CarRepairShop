@@ -1,5 +1,6 @@
 ﻿using CarRepairShop.API.Helpers;
-using CarRepairShop.Application.Common;
+using CarRepairShop.Application.Common.Responses;
+using CarRepairShop.Infrastructure.Identity;
 using CarRepairShop.Infrastructure.User.Interfaces;
 using CarRepairShop.Infrastructure.User.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -17,6 +18,7 @@ namespace CarRepairShop.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = UserRoles.Admin)]
         public async Task<ListResponse<UserViewModel>> GetAll()
         {
             return await _service.GetAll();

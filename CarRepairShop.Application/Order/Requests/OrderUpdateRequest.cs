@@ -1,12 +1,21 @@
 ﻿using AutoMapper;
 using CarRepairShop.Application.Mapping;
+using CarRepairShop.Domain.Enums;
 using Entity = CarRepairShop.Domain.Models;
 
-namespace CarRepairShop.Application.Car.Requests
+namespace CarRepairShop.Application.Order.Requests
 {
-    public class CarUpdateRequest : IMap
+    public class OrderUpdateRequest : IMap
     {
         public int Id { get; set; }
+
+        public decimal Price { get; set; }
+
+        public OrderStatus OrderStatus { get; set; }
+
+        public ServiceType ServiceType { get; set; }
+
+        public string Annotations { get; set; }
 
         public string Model { get; set; }
 
@@ -18,9 +27,11 @@ namespace CarRepairShop.Application.Car.Requests
 
         public string LicensePlateNumber { get; set; }
 
+        public bool IsVisible { get; set; }
+
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<CarUpdateRequest, Entity.Car>();
+            profile.CreateMap<OrderUpdateRequest, Entity.Order>();
         }
     }
 }

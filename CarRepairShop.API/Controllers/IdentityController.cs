@@ -1,12 +1,14 @@
 ﻿using CarRepairShop.API.Helpers;
-using CarRepairShop.Application.Common;
+using CarRepairShop.Application.Common.Responses;
 using CarRepairShop.Application.Identity.Interfaces;
 using CarRepairShop.Application.Identity.Requests;
 using CarRepairShop.Application.Identity.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRepairShop.API.Controllers
 {
+    [AllowAnonymous]
     public class IdentityController : RouteBaseController
     {
         private readonly IIdentityService _service;
