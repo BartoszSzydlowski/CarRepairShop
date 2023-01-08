@@ -7,6 +7,8 @@ namespace CarRepairShop.Domain.Models
     {
         public int CarId { get; set; }
 
+        public Car Car { get; set; }
+
         public decimal Price { get; set; }
 
         public OrderStatus OrderStatus { get; set; }
