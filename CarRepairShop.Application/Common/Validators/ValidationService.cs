@@ -14,11 +14,6 @@ namespace CarRepairShop.Application.Common.Validators
             _httpContextAccessor = httpContextAccessor;
         }
 
-        //public async Task<ValidationResult> ValidateAsync<T>(T request)
-        //{
-        //    return await _httpContextAccessor.HttpContext!.RequestServices.GetRequiredService<IValidator<T>>().ValidateAsync(request);
-        //}
-
         public async Task<bool> ValidateAsync<T>(T request)
         {
             var validationResult = await _httpContextAccessor.HttpContext!.RequestServices.GetRequiredService<IValidator<T>>().ValidateAsync(request);

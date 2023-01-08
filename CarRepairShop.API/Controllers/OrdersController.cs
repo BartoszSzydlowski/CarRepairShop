@@ -46,14 +46,6 @@ namespace CarRepairShop.API.Controllers
         [Authorize]
         public async Task<BaseResponse> Update(OrderUpdateRequest request)
         {
-            //var userOwnsAdvert = await _service.UserOwns(request.Id, User.FindFirstValue(ClaimTypes.NameIdentifier));
-            //var isAdmin = User.IsInRole(UserRoles.Admin);
-
-            //if (!isAdmin && !userOwnsAdvert)
-            //{
-            //    throw new ValidationException("Failed to update");
-            //}
-
             return await _service.Update(request);
         }
 

@@ -37,7 +37,7 @@ namespace CarRepairShop.Application.Order.Validators
             var user = _userResolverService.User;
             //var userRoles = user.Claims.Where(x => x.Type == ClaimTypes.Role);
 
-            if (order.UserId == _userResolverService.UserId)
+            if (order.CreatedBy == _userResolverService.UserId)
             {
                 return true;
             }
