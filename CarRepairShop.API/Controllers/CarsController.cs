@@ -1,13 +1,13 @@
 ﻿using CarRepairShop.API.Helpers;
-using CarRepairShop.Application.Car.Interfaces;
+using CarRepairShop.Application.Order.Interfaces;
 
 namespace CarRepairShop.API.Controllers
 {
     public class CarsController : RouteBaseController
     {
-        private readonly ICarService _service;
+        private readonly IOrderService _service;
 
-        public CarsController(ICarService service)
+        public CarsController(IOrderService service)
         {
             _service = service;
         }

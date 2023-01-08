@@ -1,5 +1,6 @@
 ﻿using CarRepairShop.Domain.Interfaces;
 using CarRepairShop.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarRepairShop.Infrastructure.Repositories
 {
@@ -14,27 +15,31 @@ namespace CarRepairShop.Infrastructure.Repositories
 
         public async Task<IEnumerable<Order>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _context.Orders.ToListAsync();
         }
 
         public async Task<Order> Get(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task Add(Order order)
         {
-            throw new NotImplementedException();
+            await _context.AddAsync(order);
+            await _context.SaveChangesAsync();
         }
 
         public async Task Update(Order order)
         {
-            throw new NotImplementedException();
+            _context.Orders.Update(order);
+            await _context.SaveChangesAsync();
         }
 
         public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = await _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
+            _context.Orders.Remove(entity);
+            await _context.SaveChangesAsync();
         }
     }
 }

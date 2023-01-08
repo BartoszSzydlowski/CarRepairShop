@@ -18,8 +18,6 @@ namespace CarRepairShop.Infrastructure
             _userResolverService = userResolverService;
         }
 
-        public DbSet<Car> Cars { get; set; }
-
         public DbSet<Order> Orders { get; set; }
 
         public async Task<int> SaveChangesAsync()
@@ -47,19 +45,6 @@ namespace CarRepairShop.Infrastructure
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
-            //builder.Entity<ProductOrder>()
-            //    .HasKey(po => new { po.ProductId, po.OrderId });
-
-            //builder.Entity<ProductOrder>()
-            //    .HasOne(p => p.Product)
-            //    .WithMany(po => po.ProductOrders)
-            //    .HasForeignKey(p => p.ProductId);
-
-            //builder.Entity<ProductOrder>()
-            //    .HasOne(o => o.Order)
-            //    .WithMany(po => po.ProductOrders)
-            //    .HasForeignKey(o => o.OrderId);
 
             builder.SeedDatabase();
         }

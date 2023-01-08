@@ -43,11 +43,11 @@ namespace CarRepairShop.Infrastructure.Identity
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 };
 
-                //var userRoles = await _userManager.GetRolesAsync(user);
-                //foreach (var userRole in userRoles)
-                //{
-                //    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-                //}
+                var userRoles = await _userManager.GetRolesAsync(user);
+                foreach (var userRole in userRoles)
+                {
+                    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                }
 
                 var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
 
