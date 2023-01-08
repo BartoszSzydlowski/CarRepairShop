@@ -1,4 +1,4 @@
-﻿using CarRepairShop.Application.Common;
+﻿using CarRepairShop.Application.Common.Responses;
 using CarRepairShop.Application.User.Interfaces;
 using CarRepairShop.Infrastructure.Identity;
 using CarRepairShop.Infrastructure.User.Interfaces;

@@ -1,4 +1,4 @@
-﻿using CarRepairShop.Application.Common;
+﻿using CarRepairShop.Application.Common.Responses;
 using CarRepairShop.Infrastructure.User.ViewModels;
 
 namespace CarRepairShop.Infrastructure.User.Interfaces

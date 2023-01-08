@@ -1,5 +1,5 @@
 ﻿using CarRepairShop.API.Helpers;
-using CarRepairShop.Application.Common;
+using CarRepairShop.Application.Common.Responses;
 using CarRepairShop.Infrastructure.Identity;
 using CarRepairShop.Infrastructure.User.Interfaces;
 using CarRepairShop.Infrastructure.User.ViewModels;

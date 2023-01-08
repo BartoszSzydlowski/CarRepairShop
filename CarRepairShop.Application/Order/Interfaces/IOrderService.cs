@@ -1,4 +1,4 @@
-﻿using CarRepairShop.Application.Common;
+﻿using CarRepairShop.Application.Common.Responses;
 using CarRepairShop.Application.Order.Requests;
 using CarRepairShop.Application.Order.ViewModels;
 
@@ -15,7 +15,5 @@ namespace CarRepairShop.Application.Order.Interfaces
         Task<BaseResponse> Update(OrderUpdateRequest request);
 
         Task<BaseResponse> Delete(OrderDeleteRequest request);
-
-        Task<bool> UserOwns(int id, string userId);
     }
 }

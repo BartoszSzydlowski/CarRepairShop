@@ -1,5 +1,5 @@
 ﻿using CarRepairShop.API.Helpers;
-using CarRepairShop.Application.Common;
+using CarRepairShop.Application.Common.Responses;
 using CarRepairShop.Application.Order.Interfaces;
 using CarRepairShop.Application.Order.Requests;
 using CarRepairShop.Application.Order.ViewModels;
