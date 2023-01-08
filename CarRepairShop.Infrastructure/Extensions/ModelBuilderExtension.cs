@@ -11,18 +11,20 @@ namespace CarRepairShop.Infrastructure.Extensions
             var adminname = "testAdmin@test.com";
             var adminId = Guid.NewGuid().ToString();
             var adminRoleId = Guid.NewGuid().ToString();
+            var adminRoleName = "Admin";
 
             var username = "testUser@test.com";
             var userId = Guid.NewGuid().ToString();
             var userRoleId = Guid.NewGuid().ToString();
+            var userRoleName = "User";
 
             var hasher = new PasswordHasher<ApplicationUser>();
 
             builder.Entity<IdentityRole>().HasData(
                 new IdentityRole
                 {
-                    Name = "Admin",
-                    NormalizedName = "ADMIN",
+                    Name = adminRoleName,
+                    NormalizedName = adminRoleName.ToUpper(),
                     Id = adminRoleId
                 }
             );
@@ -30,8 +32,8 @@ namespace CarRepairShop.Infrastructure.Extensions
             builder.Entity<IdentityRole>().HasData(
                 new IdentityRole
                 {
-                    Name = "User",
-                    NormalizedName = "USER",
+                    Name = userRoleName,
+                    NormalizedName = userRoleName.ToUpper(),
                     Id = userRoleId
                 }
             );
