@@ -1,4 +1,5 @@
-﻿using CarRepairShop.Application.Order.Interfaces;
+﻿using CarRepairShop.Application.Common.Validators;
+using CarRepairShop.Application.Order.Interfaces;
 using CarRepairShop.Application.Order.Requests;
 using CarRepairShop.Application.Order.Services;
 using CarRepairShop.Application.Order.Validators;
@@ -17,6 +18,8 @@ namespace CarRepairShop.Application
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddScoped<IUserResolverService, UserResolverService>();
+
+            services.AddScoped<IValidationService, ValidationService>();
 
             services.AddScoped<IOrderService, OrderService>();
 

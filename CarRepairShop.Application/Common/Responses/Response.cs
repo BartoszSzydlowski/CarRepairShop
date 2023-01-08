@@ -1,4 +1,4 @@
-﻿namespace CarRepairShop.Application.Common
+﻿namespace CarRepairShop.Application.Common.Responses
 {
     public class Response<T> : BaseResponse
     {

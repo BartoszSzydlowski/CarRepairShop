@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using CarRepairShop.Application.Common;
+using CarRepairShop.Application.Common.Responses;
+using CarRepairShop.Application.Common.Validators;
 using CarRepairShop.Application.Order.Interfaces;
 using CarRepairShop.Application.Order.Requests;
 using CarRepairShop.Application.Order.ViewModels;
 using CarRepairShop.Domain.Interfaces;
-using FluentValidation;
 using System.Net;
 using Entity = CarRepairShop.Domain.Models;
 
@@ -14,17 +14,13 @@ namespace CarRepairShop.Application.Order.Services
     {
         private readonly IOrderRepository _repository;
         private readonly IMapper _mapper;
-        private readonly IValidator<OrderAddRequest> _addValidator;
-        private readonly IValidator<OrderUpdateRequest> _updateValidator;
-        private readonly IValidator<OrderDeleteRequest> _deleteValidator;
+        private readonly IValidationService _validationService;
 
-        public OrderService(IOrderRepository repository, IMapper mapper, IValidator<OrderAddRequest> addValidator, IValidator<OrderUpdateRequest> updateValidator, IValidator<OrderDeleteRequest> deleteValidator)
+        public OrderService(IOrderRepository repository, IMapper mapper, IValidationService validationService)
         {
             _repository = repository;
             _mapper = mapper;
-            _addValidator = addValidator;
-            _updateValidator = updateValidator;
-            _deleteValidator = deleteValidator;
+            _validationService = validationService;
         }
 
         public async Task<ListResponse<OrderViewModel>> GetAll()
@@ -53,25 +49,14 @@ namespace CarRepairShop.Application.Order.Services
 
         public async Task<BaseResponse> Add(OrderAddRequest request)
         {
-            var validationResult = await _addValidator.ValidateAsync(request);
-
-            if (!validationResult.IsValid)
-            {
-                throw new ValidationException(validationResult.Errors);
-            }
-
+            await _validationService.ValidateAsync(request);
             await _repository.Add(_mapper.Map<Entity.Order>(request));
             return new BaseResponse();
         }
 
         public async Task<BaseResponse> Update(OrderUpdateRequest request)
         {
-            var validationResult = await _updateValidator.ValidateAsync(request);
-            if (!validationResult.IsValid)
-            {
-                throw new ValidationException(validationResult.Errors);
-            }
-
+            await _validationService.ValidateAsync(request);
             var existingProduct = await _repository.Get(request.Id);
             var product = _mapper.Map(request, existingProduct);
             await _repository.Update(product);
@@ -80,31 +65,9 @@ namespace CarRepairShop.Application.Order.Services
 
         public async Task<BaseResponse> Delete(OrderDeleteRequest request)
         {
-            var validationResult = await _deleteValidator.ValidateAsync(request);
-            if (!validationResult.IsValid)
-            {
-                throw new ValidationException(validationResult.Errors);
-            }
-
+            await _validationService.ValidateAsync(request);
             await _repository.Delete(request.Id);
             return new BaseResponse();
-        }
-
-        public async Task<bool> UserOwns(int id, string userId)
-        {
-            var order = await _repository.Get(id);
-
-            if (order == null)
-            {
-                return false;
-            }
-
-            if (order.UserId != userId)
-            {
-                return false;
-            }
-
-            return true;
         }
     }
 }

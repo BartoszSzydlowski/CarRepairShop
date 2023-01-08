@@ -1,4 +1,4 @@
-﻿using CarRepairShop.Application.Common;
+﻿using CarRepairShop.Application.Common.Responses;
 using FluentValidation;
 using System.Net;
 using System.Security.Authentication;

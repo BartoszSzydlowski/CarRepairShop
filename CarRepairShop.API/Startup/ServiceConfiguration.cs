@@ -25,6 +25,8 @@ namespace CarRepairShop.API.Startup
 
             builder.Services.AddEndpointsApiExplorer();
 
+            builder.Services.AddHttpContextAccessor();
+
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
