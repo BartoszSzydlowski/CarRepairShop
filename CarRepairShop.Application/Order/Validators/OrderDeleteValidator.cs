@@ -3,7 +3,6 @@ using CarRepairShop.Application.User.Interfaces;
 using CarRepairShop.Domain.Interfaces;
 using FluentValidation;
 using FluentValidation.Results;
-using System.Security.Claims;
 
 namespace CarRepairShop.Application.Order.Validators
 {

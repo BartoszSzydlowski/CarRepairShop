@@ -5,7 +5,6 @@ using CarRepairShop.Application.Order.Interfaces;
 using CarRepairShop.Application.Order.Requests;
 using CarRepairShop.Application.Order.ViewModels;
 using CarRepairShop.Domain.Interfaces;
-using FluentValidation;
 using System.Net;
 using Entity = CarRepairShop.Domain.Models;
 

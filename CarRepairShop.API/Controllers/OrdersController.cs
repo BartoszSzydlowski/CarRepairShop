@@ -3,11 +3,8 @@ using CarRepairShop.Application.Common.Responses;
 using CarRepairShop.Application.Order.Interfaces;
 using CarRepairShop.Application.Order.Requests;
 using CarRepairShop.Application.Order.ViewModels;
-using CarRepairShop.Infrastructure.Identity;
-using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace CarRepairShop.API.Controllers
 {
@@ -40,7 +37,6 @@ namespace CarRepairShop.API.Controllers
         {
             return await _service.Add(request);
         }
-
 
         [HttpPut]
         [Authorize]
