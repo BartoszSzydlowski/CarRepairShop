@@ -10,7 +10,7 @@ namespace CarRepairShop.API.Startup
 {
     public static class ServiceConfiguration
     {
-        public static void ConfigureServices(this WebApplicationBuilder builder)
+        public static void ConfigureServices(this WebApplicationBuilder builder, CancellationToken cancellationToken = default)
         {
             builder.Services.AddControllers()
             .AddJsonOptions(options =>
