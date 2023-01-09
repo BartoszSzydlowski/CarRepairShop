@@ -40,13 +40,8 @@ namespace CarRepairShop.Infrastructure.Repositories
         public async Task Delete(int id)
         {
             var entity = await _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
-            _context.Orders.Remove(entity);
+            _context.Orders.Remove(entity!);
             await _context.SaveChangesAsync();
-        }
-
-        public async Task<Order> GetLast()
-        {
-            return await _context.Orders.OrderByDescending(x => x.DateOfService).Select(x => x).FirstOrDefaultAsync();
         }
     }
 }

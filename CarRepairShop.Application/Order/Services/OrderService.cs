@@ -69,19 +69,5 @@ namespace CarRepairShop.Application.Order.Services
             await _repository.Delete(request.Id);
             return new BaseResponse();
         }
-
-        public async Task<Response<OrderViewModel>> GetLast()
-        {
-            var data = await _repository.GetLast();
-            if (data != null)
-            {
-                return new Response<OrderViewModel>
-                {
-                    Data = _mapper.Map<OrderViewModel>(data)
-                };
-            }
-
-            throw new HttpRequestException("", null, HttpStatusCode.NotFound);
-        }
     }
 }

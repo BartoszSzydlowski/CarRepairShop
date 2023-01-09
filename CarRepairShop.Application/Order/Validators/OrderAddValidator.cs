@@ -53,9 +53,17 @@ namespace CarRepairShop.Application.Order.Validators
 
         private async Task<bool> ScheduledServiceDoesNotExist(OrderAddRequest request, CancellationToken cancellation)
         {
-            //Dodac petle do sprawdzania dat wszystkich zamowien i odstep co godzine
-            var lastOrder = await _repository.GetLast();
-            return request.DateOfService.Subtract(lastOrder.DateOfService) > TimeSpan.FromHours(1);
+            var orders = await _repository.GetAll();
+
+            foreach (var order in orders)
+            {
+                if (Math.Abs((request.DateOfService - order.DateOfService).TotalMinutes) < 60)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
