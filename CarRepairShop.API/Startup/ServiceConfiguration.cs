@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace CarRepairShop.API.Startup
 {
@@ -15,6 +16,7 @@ namespace CarRepairShop.API.Startup
             .AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.WriteIndented = true;
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
 
             builder.Services.AddEndpointsApiExplorer();

@@ -8,6 +8,8 @@ namespace CarRepairShop.Application.Identity.Interfaces
     {
         Task<Response<TokenViewModel>> Login(LoginRequest request);
 
-        Task<BaseResponse> Register(RegisterRequest request);
+        Task<BaseResponse> RegisterUser(RegisterRequest request);
+
+        Task<BaseResponse> RegisterAdmin(RegisterRequest request);
     }
 }

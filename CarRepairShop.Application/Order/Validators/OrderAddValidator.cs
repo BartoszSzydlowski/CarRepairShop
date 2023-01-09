@@ -44,7 +44,18 @@ namespace CarRepairShop.Application.Order.Validators
                 .NotEmpty()
                 .WithMessage("License plate number can't be empty");
 
+            RuleFor(x => x)
+                .MustAsync(ScheduledServiceDoesNotExist)
+                .WithMessage("Service has been scheduled. Try another hour");
+
             return base.ValidateAsync(context, cancellation);
+        }
+
+        private async Task<bool> ScheduledServiceDoesNotExist(OrderAddRequest request, CancellationToken cancellation)
+        {
+            //Dodac petle do sprawdzania dat wszystkich zamowien i odstep co godzine
+            var lastOrder = await _repository.GetLast();
+            return request.DateOfService.Subtract(lastOrder.DateOfService) > TimeSpan.FromHours(1);
         }
     }
 }

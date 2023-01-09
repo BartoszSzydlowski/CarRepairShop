@@ -11,6 +11,8 @@ namespace CarRepairShop.Domain.Models
 
         public ServiceType ServiceType { get; set; }
 
+        public DateTime DateOfService { get; set; }
+
         public string Annotations { get; set; }
 
         public string Model { get; set; }

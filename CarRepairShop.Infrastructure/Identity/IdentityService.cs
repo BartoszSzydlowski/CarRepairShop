@@ -52,8 +52,8 @@ namespace CarRepairShop.Infrastructure.Identity
                 var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
 
                 var token = new JwtSecurityToken(
-                    expires: DateTime.Now.AddHours(2),
                     claims: authClaims,
+                    expires: DateTime.Now.AddHours(2),
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                     );
 
@@ -69,7 +69,17 @@ namespace CarRepairShop.Infrastructure.Identity
             throw new AuthenticationException("Wrong username or password");
         }
 
-        public async Task<BaseResponse> Register(RegisterRequest request)
+        public async Task<BaseResponse> RegisterUser(RegisterRequest request)
+        {
+            return await Register(request, UserRoles.User);
+        }
+
+        public async Task<BaseResponse> RegisterAdmin(RegisterRequest request)
+        {
+            return await Register(request, UserRoles.Admin);
+        }
+
+        private async Task<BaseResponse> Register(RegisterRequest request, string userRole)
         {
             var userExists = await _userManager.FindByNameAsync(request.Email);
             if (userExists != null)
@@ -92,6 +102,13 @@ namespace CarRepairShop.Infrastructure.Identity
                 {
                     throw new Exception("Failed to create user");
                 }
+
+                if (!await _roleManager.RoleExistsAsync(userRole))
+                {
+                    await _roleManager.CreateAsync(new IdentityRole(userRole));
+                }
+
+                await _userManager.AddToRoleAsync(user, userRole);
 
                 return new BaseResponse();
             }

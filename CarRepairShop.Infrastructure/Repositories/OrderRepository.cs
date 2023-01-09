@@ -1,4 +1,5 @@
-﻿using CarRepairShop.Domain.Interfaces;
+﻿using CarRepairShop.Domain.Enums;
+using CarRepairShop.Domain.Interfaces;
 using CarRepairShop.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,7 @@ namespace CarRepairShop.Infrastructure.Repositories
 
         public async Task Add(Order order)
         {
+            order.OrderStatus = (OrderStatus)1;
             await _context.AddAsync(order);
             await _context.SaveChangesAsync();
         }
@@ -40,6 +42,11 @@ namespace CarRepairShop.Infrastructure.Repositories
             var entity = await _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
             _context.Orders.Remove(entity);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<Order> GetLast()
+        {
+            return await _context.Orders.OrderByDescending(x => x.DateOfService).Select(x => x).FirstOrDefaultAsync();
         }
     }
 }

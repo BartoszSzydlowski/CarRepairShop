@@ -51,5 +51,12 @@ namespace CarRepairShop.API.Controllers
         {
             return await _service.Delete(request);
         }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<Response<OrderViewModel>> GetLast()
+        {
+            return await _service.GetLast();
+        }
     }
 }

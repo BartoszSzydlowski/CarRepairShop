@@ -9,7 +9,9 @@ namespace CarRepairShop.Application.Order.Requests
     {
         public decimal Price { get; set; }
 
-        public OrderStatus OrderStatus { get; set; }
+        //public OrderStatus OrderStatus { get; set; } = (OrderStatus)1;
+
+        public DateTime DateOfService { get; set; } = DateTime.Now;
 
         public ServiceType ServiceType { get; set; }
 

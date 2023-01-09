@@ -15,5 +15,7 @@ namespace CarRepairShop.Application.Order.Interfaces
         Task<BaseResponse> Update(OrderUpdateRequest request);
 
         Task<BaseResponse> Delete(OrderDeleteRequest request);
+
+        Task<Response<OrderViewModel>> GetLast();
     }
 }

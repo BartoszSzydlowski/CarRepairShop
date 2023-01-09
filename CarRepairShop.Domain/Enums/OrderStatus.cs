@@ -2,8 +2,9 @@
 {
     public enum OrderStatus
     {
-        Accepted = 1,
-        InProgress = 2,
-        Completed = 3
+        New = 1,
+        Accepted = 2,
+        InProgress = 3,
+        Completed = 4
     }
 }
