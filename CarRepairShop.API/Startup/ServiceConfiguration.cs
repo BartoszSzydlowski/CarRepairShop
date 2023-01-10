@@ -12,6 +12,16 @@ namespace CarRepairShop.API.Startup
     {
         public static void ConfigureServices(this WebApplicationBuilder builder, CancellationToken cancellationToken = default)
         {
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin();
+                    builder.AllowAnyMethod();
+                    builder.AllowAnyHeader();
+                });
+            });
+
             builder.Services.AddControllers()
             .AddJsonOptions(options =>
             {
