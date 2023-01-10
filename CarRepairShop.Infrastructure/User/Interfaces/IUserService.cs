@@ -10,5 +10,7 @@ namespace CarRepairShop.Infrastructure.User.Interfaces
         Task<Response<UserViewModel>> Get(string id);
 
         Task<Response<UserViewModel>> GetCurrentUser();
+
+        Task<Response<UserViewModel>> GetUserDetails(string id);
     }
 }

@@ -26,6 +26,7 @@ namespace CarRepairShop.Application
             services.AddScoped<IValidator<OrderAddRequest>, OrderAddValidator>();
             services.AddScoped<IValidator<OrderUpdateRequest>, OrderUpdateValidator>();
             services.AddScoped<IValidator<OrderDeleteRequest>, OrderDeleteValidator>();
+            services.AddScoped<IValidator<OrderUpdateStatusRequest>, OrderUpdateStatusValidator>();
 
             return services;
         }

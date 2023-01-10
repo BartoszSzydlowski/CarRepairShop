@@ -30,5 +30,12 @@ namespace CarRepairShop.API.Controllers
         {
             return await _service.GetCurrentUser();
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<Response<UserViewModel>> GetUserDetails([FromQuery] string id)
+        {
+            return await _service.GetUserDetails(id);
+        }
     }
 }

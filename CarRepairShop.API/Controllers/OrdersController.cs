@@ -3,6 +3,7 @@ using CarRepairShop.Application.Common.Responses;
 using CarRepairShop.Application.Order.Interfaces;
 using CarRepairShop.Application.Order.Requests;
 using CarRepairShop.Application.Order.ViewModels;
+using CarRepairShop.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -50,6 +51,20 @@ namespace CarRepairShop.API.Controllers
         public async Task<BaseResponse> Delete(OrderDeleteRequest request)
         {
             return await _service.Delete(request);
+        }
+
+        [HttpPut]
+        [Authorize(Roles = UserRoles.Admin)]
+        public async Task<BaseResponse> UpdateOrderStatus(OrderUpdateStatusRequest request)
+        {
+            return await _service.UpdateOrderStatus(request);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<BaseResponse> GetUserOrders()
+        {
+            return await _service.GetUserOrders();
         }
     }
 }

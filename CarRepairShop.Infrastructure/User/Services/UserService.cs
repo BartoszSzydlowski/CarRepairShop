@@ -5,6 +5,7 @@ using CarRepairShop.Infrastructure.User.Interfaces;
 using CarRepairShop.Infrastructure.User.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 using System.Security.Claims;
 
 namespace CarRepairShop.Infrastructure.User.Services
@@ -75,6 +76,29 @@ namespace CarRepairShop.Infrastructure.User.Services
                 PhoneNumber = user.Claims.Where(x => x.Type == ClaimTypes.MobilePhone).SingleOrDefault().Value,
                 Name = user.Claims.Where(x => x.Type == ClaimTypes.Name).SingleOrDefault().Value,
                 Surname = user.Claims.Where(x => x.Type == ClaimTypes.Surname).SingleOrDefault().Value,
+            };
+
+            return new Response<UserViewModel>
+            {
+                Data = mappedUser
+            };
+        }
+
+        public async Task<Response<UserViewModel>> GetUserDetails(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                throw new HttpRequestException("Not found", null, HttpStatusCode.NotFound);
+            }
+
+            var mappedUser = new UserViewModel
+            {
+                Id = user.Id,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                Name = user.Name,
+                Surname = user.Surname,
             };
 
             return new Response<UserViewModel>

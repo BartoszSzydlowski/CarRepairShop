@@ -9,10 +9,6 @@ namespace CarRepairShop.Application.Order.Requests
     {
         public int Id { get; set; }
 
-        public decimal Price { get; set; }
-
-        public OrderStatus OrderStatus { get; set; }
-
         public ServiceType ServiceType { get; set; }
 
         public string Annotations { get; set; }
@@ -26,8 +22,6 @@ namespace CarRepairShop.Application.Order.Requests
         public string VinNumber { get; set; }
 
         public string LicensePlateNumber { get; set; }
-
-        public bool IsVisible { get; set; }
 
         public void Mapping(Profile profile)
         {

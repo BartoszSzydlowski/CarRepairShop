@@ -15,5 +15,9 @@ namespace CarRepairShop.Application.Order.Interfaces
         Task<BaseResponse> Update(OrderUpdateRequest request);
 
         Task<BaseResponse> Delete(OrderDeleteRequest request);
+
+        Task<BaseResponse> UpdateOrderStatus(OrderUpdateStatusRequest request);
+
+        Task<ListResponse<OrderViewModel>> GetUserOrders();
     }
 }

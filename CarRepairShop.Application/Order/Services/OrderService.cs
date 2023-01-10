@@ -4,6 +4,7 @@ using CarRepairShop.Application.Common.Validators;
 using CarRepairShop.Application.Order.Interfaces;
 using CarRepairShop.Application.Order.Requests;
 using CarRepairShop.Application.Order.ViewModels;
+using CarRepairShop.Application.User.Interfaces;
 using CarRepairShop.Domain.Interfaces;
 using System.Net;
 using Entity = CarRepairShop.Domain.Models;
@@ -15,12 +16,14 @@ namespace CarRepairShop.Application.Order.Services
         private readonly IOrderRepository _repository;
         private readonly IMapper _mapper;
         private readonly IValidationService _validationService;
+        private readonly IUserResolverService _userResolverService;
 
-        public OrderService(IOrderRepository repository, IMapper mapper, IValidationService validationService)
+        public OrderService(IOrderRepository repository, IMapper mapper, IValidationService validationService, IUserResolverService userResolverService)
         {
             _repository = repository;
             _mapper = mapper;
             _validationService = validationService;
+            _userResolverService = userResolverService;
         }
 
         public async Task<ListResponse<OrderViewModel>> GetAll()
@@ -68,6 +71,25 @@ namespace CarRepairShop.Application.Order.Services
             await _validationService.ValidateAsync(request);
             await _repository.Delete(request.Id);
             return new BaseResponse();
+        }
+
+        public async Task<BaseResponse> UpdateOrderStatus(OrderUpdateStatusRequest request)
+        {
+            await _validationService.ValidateAsync(request);
+            var existingProduct = await _repository.Get(request.Id);
+            var product = _mapper.Map(request, existingProduct);
+            await _repository.Update(product);
+            return new BaseResponse();
+        }
+
+        public async Task<ListResponse<OrderViewModel>> GetUserOrders()
+        {
+            var data = await _repository.GetUserOrders(_userResolverService.UserId);
+            return new ListResponse<OrderViewModel>
+            {
+                Data = _mapper.Map<IEnumerable<OrderViewModel>>(data),
+                Total = data.Count()
+            };
         }
     }
 }

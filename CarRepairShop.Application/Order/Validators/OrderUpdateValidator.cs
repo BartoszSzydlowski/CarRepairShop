@@ -23,10 +23,6 @@ namespace CarRepairShop.Application.Order.Validators
                 .MustAsync(OrderExists)
                 .WithMessage("Order doesn't exist");
 
-            RuleFor(x => x.Price)
-                .NotEmpty()
-                .WithMessage("Price can't be empty");
-
             RuleFor(x => x.ServiceType)
                 .NotEmpty()
                 .WithMessage("Service type can't be empty");

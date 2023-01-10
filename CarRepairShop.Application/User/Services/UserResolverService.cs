@@ -26,7 +26,6 @@ namespace CarRepairShop.Application.User.Services
             get
             {
                 var claim = User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier);
-                //return int.TryParse(claim == null ? throw new Exception("ClaimTypes.NameIdentifier is null") : claim.Value, out int result) ? result : throw new Exception("ClaimTypes.NameIdentifier is not int");
                 return claim?.Value;
             }
         }

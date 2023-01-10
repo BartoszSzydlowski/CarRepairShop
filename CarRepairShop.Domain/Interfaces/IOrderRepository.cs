@@ -13,5 +13,7 @@ namespace CarRepairShop.Domain.Interfaces
         Task Update(Order order);
 
         Task Delete(int id);
+
+        Task<IEnumerable<Order>> GetUserOrders(string userId);
     }
 }

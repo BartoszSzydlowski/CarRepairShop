@@ -43,5 +43,10 @@ namespace CarRepairShop.Infrastructure.Repositories
             _context.Orders.Remove(entity!);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Order>> GetUserOrders(string userId)
+        {
+            return await _context.Orders.Where(x => x.CreatedBy == userId).ToListAsync();
+        }
     }
 }

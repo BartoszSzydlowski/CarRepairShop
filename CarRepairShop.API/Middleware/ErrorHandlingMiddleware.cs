@@ -33,7 +33,7 @@ namespace CarRepairShop.API.Middleware
             {
                 if (ex.StatusCode == HttpStatusCode.NotFound)
                 {
-                    await WriteErrorResponse(context, new List<string> { "Resource not found" }, HttpStatusCode.NotFound);
+                    await WriteErrorResponse(context, new List<string> { ex.Message }, HttpStatusCode.NotFound);
                 }
             }
             catch (ValidationException ex)
