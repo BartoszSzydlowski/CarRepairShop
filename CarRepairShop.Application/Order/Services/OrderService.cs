@@ -47,7 +47,7 @@ namespace CarRepairShop.Application.Order.Services
                 };
             }
 
-            throw new HttpRequestException("", null, HttpStatusCode.NotFound);
+            throw new HttpRequestException("Not found", null, HttpStatusCode.NotFound);
         }
 
         public async Task<BaseResponse> Add(OrderAddRequest request)

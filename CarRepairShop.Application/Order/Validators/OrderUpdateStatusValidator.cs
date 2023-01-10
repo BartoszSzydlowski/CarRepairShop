@@ -10,9 +10,7 @@ namespace CarRepairShop.Application.Order.Validators
         private readonly IOrderRepository _repository;
 
         public OrderUpdateStatusValidator(IOrderRepository repository)
-        {
-            _repository = repository;
-        }
+            => _repository = repository;
 
         public override Task<ValidationResult> ValidateAsync(ValidationContext<OrderUpdateStatusRequest> context, CancellationToken cancellation = default)
         {
@@ -32,8 +30,6 @@ namespace CarRepairShop.Application.Order.Validators
         }
 
         private async Task<bool> OrderExists(int id, CancellationToken cancellation)
-        {
-            return await _repository.Get(id) != null;
-        }
+            => await _repository.Get(id) != null;
     }
 }

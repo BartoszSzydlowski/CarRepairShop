@@ -10,9 +10,7 @@ namespace CarRepairShop.Application.Order.Validators
         private readonly IOrderRepository _repository;
 
         public OrderAddValidator(IOrderRepository repository)
-        {
-            _repository = repository;
-        }
+            => _repository = repository;
 
         public override Task<ValidationResult> ValidateAsync(ValidationContext<OrderAddRequest> context, CancellationToken cancellation = default)
         {

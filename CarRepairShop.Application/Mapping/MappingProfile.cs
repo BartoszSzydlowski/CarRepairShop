@@ -6,9 +6,7 @@ namespace CarRepairShop.Application.Mapping
     public class MappingProfile : Profile
     {
         public MappingProfile()
-        {
-            ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
-        }
+            => ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
 
         private void ApplyMappingsFromAssembly(Assembly assembly)
         {

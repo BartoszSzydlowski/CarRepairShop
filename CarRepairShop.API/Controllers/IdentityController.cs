@@ -14,29 +14,21 @@ namespace CarRepairShop.API.Controllers
         private readonly IIdentityService _service;
 
         public IdentityController(IIdentityService service)
-        {
-            _service = service;
-        }
+            => _service = service;
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<Response<TokenViewModel>> Login([FromBody] LoginRequest request)
-        {
-            return await _service.Login(request);
-        }
+        public async Task<Response<TokenViewModel>> Login([FromBody] LoginRequest request) =>
+            await _service.Login(request);
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<BaseResponse> RegisterUser([FromBody] RegisterRequest request)
-        {
-            return await _service.RegisterUser(request);
-        }
+        public async Task<BaseResponse> RegisterUser([FromBody] RegisterRequest request) =>
+            await _service.RegisterUser(request);
 
         [HttpPost]
         [Authorize(Roles = UserRoles.Admin)]
-        public async Task<BaseResponse> RegisterAdmin([FromBody] RegisterRequest request)
-        {
-            return await _service.RegisterAdmin(request);
-        }
+        public async Task<BaseResponse> RegisterAdmin([FromBody] RegisterRequest request) =>
+            await _service.RegisterAdmin(request);
     }
 }

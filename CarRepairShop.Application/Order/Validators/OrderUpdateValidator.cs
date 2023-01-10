@@ -73,8 +73,6 @@ namespace CarRepairShop.Application.Order.Validators
         }
 
         private async Task<bool> OrderExists(int id, CancellationToken cancellation)
-        {
-            return await _repository.Get(id) != null;
-        }
+            => await _repository.Get(id) != null;
     }
 }

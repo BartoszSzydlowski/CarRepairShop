@@ -9,20 +9,14 @@ namespace CarRepairShop.Infrastructure.Repositories
     {
         private readonly ApplicationDbContext _context;
 
-        public OrderRepository(ApplicationDbContext context)
-        {
+        public OrderRepository(ApplicationDbContext context) =>
             _context = context;
-        }
 
         public async Task<IEnumerable<Order>> GetAll()
-        {
-            return await _context.Orders.ToListAsync();
-        }
+            => await _context.Orders.ToListAsync();
 
-        public async Task<Order> Get(int id)
-        {
-            return await _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
-        }
+        public async Task<Order> Get(int id) =>
+            await _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task Add(Order order)
         {
@@ -45,8 +39,6 @@ namespace CarRepairShop.Infrastructure.Repositories
         }
 
         public async Task<IEnumerable<Order>> GetUserOrders(string userId)
-        {
-            return await _context.Orders.Where(x => x.CreatedBy == userId).ToListAsync();
-        }
+            => await _context.Orders.Where(x => x.CreatedBy == userId).ToListAsync();
     }
 }

@@ -34,7 +34,6 @@ namespace CarRepairShop.Application.Order.Validators
         {
             var order = await _repository.Get(request.Id);
             var user = _userResolverService.User;
-            //var userRoles = user.Claims.Where(x => x.Type == ClaimTypes.Role);
 
             if (order.CreatedBy == _userResolverService.UserId)
             {
@@ -51,8 +50,6 @@ namespace CarRepairShop.Application.Order.Validators
         }
 
         private async Task<bool> OrderExists(int id, CancellationToken cancellation)
-        {
-            return await _repository.Get(id) != null;
-        }
+            => await _repository.Get(id) != null;
     }
 }

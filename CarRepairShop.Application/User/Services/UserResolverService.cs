@@ -9,25 +9,14 @@ namespace CarRepairShop.Application.User.Services
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public UserResolverService(IHttpContextAccessor httpContextAccessor)
-        {
-            _httpContextAccessor = httpContextAccessor;
-        }
+            => _httpContextAccessor = httpContextAccessor;
 
-        public ClaimsPrincipal User
-        {
-            get
-            {
-                return _httpContextAccessor.HttpContext.User;
-            }
-        }
+        public ClaimsPrincipal User =>
+            _httpContextAccessor.HttpContext!.User;
 
-        public string UserId
-        {
-            get
-            {
-                var claim = User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier);
-                return claim?.Value;
-            }
-        }
+        public string UserId =>
+                User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier)?.Value!;
+        //var claim = User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier);
+        //return claim?.Value!;
     }
 }

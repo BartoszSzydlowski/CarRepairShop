@@ -14,9 +14,7 @@ namespace CarRepairShop.Infrastructure
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IUserResolverService userResolverService)
         : base(options)
-        {
-            _userResolverService = userResolverService;
-        }
+            => _userResolverService = userResolverService;
 
         public DbSet<Order> Orders { get; set; }
 

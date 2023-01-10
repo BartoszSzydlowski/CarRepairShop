@@ -9,9 +9,7 @@ namespace CarRepairShop.Application.Common.Validators
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public ValidationService(IHttpContextAccessor httpContextAccessor)
-        {
-            _httpContextAccessor = httpContextAccessor;
-        }
+            => _httpContextAccessor = httpContextAccessor;
 
         public async Task<bool> ValidateAsync<T>(T request)
         {

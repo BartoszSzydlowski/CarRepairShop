@@ -13,29 +13,21 @@ namespace CarRepairShop.API.Controllers
         private readonly IUserService _service;
 
         public UsersController(IUserService service)
-        {
-            _service = service;
-        }
+            => _service = service;
 
         [HttpGet]
         [Authorize(Roles = UserRoles.Admin)]
         public async Task<ListResponse<UserViewModel>> GetAll()
-        {
-            return await _service.GetAll();
-        }
+            => await _service.GetAll();
 
         [HttpGet]
         [Authorize]
         public async Task<Response<UserViewModel>> GetCurrentUser()
-        {
-            return await _service.GetCurrentUser();
-        }
+            => await _service.GetCurrentUser();
 
         [HttpGet]
         [AllowAnonymous]
         public async Task<Response<UserViewModel>> GetUserDetails([FromQuery] string id)
-        {
-            return await _service.GetUserDetails(id);
-        }
+            => await _service.GetUserDetails(id);
     }
 }
