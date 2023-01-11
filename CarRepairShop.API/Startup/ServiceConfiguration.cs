@@ -66,7 +66,7 @@ namespace CarRepairShop.API.Startup
                 {
                     Title = "API",
                     Version = "v1",
-                });
+                }); 
 
                 var securityScheme = new OpenApiSecurityScheme
                 {
