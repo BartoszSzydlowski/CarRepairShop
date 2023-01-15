@@ -16,7 +16,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseCors(builder =>
 {
