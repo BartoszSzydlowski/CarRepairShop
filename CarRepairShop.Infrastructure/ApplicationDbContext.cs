@@ -43,7 +43,9 @@ namespace CarRepairShop.Infrastructure
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
+            builder.Entity<Order>()
+                .Property(p => p.Price)
+                .HasColumnType("decimal(18,2)");
             builder.SeedDatabase();
         }
     }
