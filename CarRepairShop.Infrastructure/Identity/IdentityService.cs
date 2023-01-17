@@ -87,6 +87,16 @@ namespace CarRepairShop.Infrastructure.Identity
                 throw new ValidationException("User already exists");
             }
 
+            if (string.IsNullOrEmpty(request.Name))
+            {
+                throw new ValidationException("Name is empty");
+            }
+
+            if (string.IsNullOrEmpty(request.Surname))
+            {
+                throw new ValidationException("Surname is empty");
+            }
+
             if (request.Password == request.ConfirmPassword)
             {
                 var user = new ApplicationUser()
@@ -94,7 +104,9 @@ namespace CarRepairShop.Infrastructure.Identity
                     Email = request.Email,
                     SecurityStamp = Guid.NewGuid().ToString(),
                     UserName = request.Email,
-                    PhoneNumber = request.PhoneNumber
+                    PhoneNumber = request.PhoneNumber,
+                    Name = request.Name,
+                    Surname = request.Surname
                 };
 
                 var result = await _userManager.CreateAsync(user, request.Password);
