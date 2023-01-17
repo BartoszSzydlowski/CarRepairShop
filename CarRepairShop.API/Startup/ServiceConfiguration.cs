@@ -1,6 +1,8 @@
 ﻿using CarRepairShop.Application;
 using CarRepairShop.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -22,6 +24,18 @@ namespace CarRepairShop.API.Startup
             //    });
             //});
 
+            if(builder.Environment.IsDevelopment())
+            {
+                builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            }
+            else
+            {
+                builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+            }
+
+
             builder.Services.AddCors();
 
             builder.Services.AddControllers()
@@ -33,7 +47,7 @@ namespace CarRepairShop.API.Startup
 
             builder.Services.AddEndpointsApiExplorer();
 
-            builder.Services.AddInfrastructure(builder.Configuration);
+            builder.Services.AddInfrastructure();
 
             builder.Services.AddApplication();
 
