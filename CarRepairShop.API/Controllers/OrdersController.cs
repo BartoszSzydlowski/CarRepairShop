@@ -38,7 +38,7 @@ namespace CarRepairShop.API.Controllers
 
         [HttpDelete]
         [Authorize]
-        public async Task<BaseResponse> Delete(OrderDeleteRequest request)
+        public async Task<BaseResponse> Delete([FromQuery] OrderDeleteRequest request)
             => await _service.Delete(request);
 
         [HttpPut]
