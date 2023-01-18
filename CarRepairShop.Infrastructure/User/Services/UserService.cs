@@ -65,20 +65,21 @@ namespace CarRepairShop.Infrastructure.User.Services
             };
         }
 
-        public async Task<Response<UserViewModel>> GetCurrentUser()
+        public async Task<Response<CurrentUserViewModel>> GetCurrentUser()
         {
             var user = _userResolverService.User;
 
-            var mappedUser = new UserViewModel
+            var mappedUser = new CurrentUserViewModel
             {
                 Id = user.Claims.Where(x => x.Type == ClaimTypes.NameIdentifier).SingleOrDefault().Value,
                 Email = user.Claims.Where(x => x.Type == ClaimTypes.Email).SingleOrDefault().Value,
                 PhoneNumber = user.Claims.Where(x => x.Type == ClaimTypes.MobilePhone).SingleOrDefault().Value,
                 Name = user.Claims.Where(x => x.Type == ClaimTypes.Name).SingleOrDefault().Value,
                 Surname = user.Claims.Where(x => x.Type == ClaimTypes.Surname).SingleOrDefault().Value,
+                Role = user.Claims.Where(x => x.Type == ClaimTypes.Role).SingleOrDefault().Value
             };
 
-            return new Response<UserViewModel>
+            return new Response<CurrentUserViewModel>
             {
                 Data = mappedUser
             };

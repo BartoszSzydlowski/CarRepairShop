@@ -22,7 +22,7 @@ namespace CarRepairShop.API.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<Response<UserViewModel>> GetCurrentUser()
+        public async Task<Response<CurrentUserViewModel>> GetCurrentUser()
             => await _service.GetCurrentUser();
 
         [HttpGet]
