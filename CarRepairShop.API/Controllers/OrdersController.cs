@@ -48,7 +48,7 @@ namespace CarRepairShop.API.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<BaseResponse> GetUserOrders()
+        public async Task<ListResponse<OrderViewModel>> GetUserOrders()
             => await _service.GetUserOrders();
     }
 }
